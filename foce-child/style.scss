@@ -1,0 +1,152 @@
+/*variables et mixins pour les animations*/
+$animation-name: rotate;
+$duration: 4s;
+$iteration-count: infinite;
+$timing-function: linear;
+$fill-mode: forwards;
+
+@mixin rotate {
+  animation-name: $animation-name;
+  animation-duration: $duration;
+  animation-iteration-count: $iteration-count;
+  animation-timing-function: $timing-function;
+  animation-fill-mode: $fill-mode;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/*animations des fleurs*/
+.story h2::after {
+    content: url("./assets/images/Sunflower.png");
+	position: absolute;
+	left: 0.7em;
+	top: 6em;
+  @include rotate;
+  transform-origin: 49% 48%;
+}
+.story__article::after {
+	content: url("./assets/images/Hibiscus.png");
+	position: absolute;
+	left: calc(50% + 414px);
+	top: 2em;
+    @include rotate;
+}
+
+#studio h2::before {
+	content: url("./assets/images/random_flower.png");
+	position: absolute;
+	left: -1em;
+	top: 0;
+    @include rotate;
+}
+
+#studio h2::after {
+	content: url("./assets/images/flower.png");
+	position: absolute;
+	right: 1em;
+	top: 1.2em;
+    @include rotate;
+}
+
+.site-footer::before {
+	content: url("./assets/images/Sunflower.png");
+	position: absolute;
+	left: 4em;
+	top: 0em;
+    @include rotate;
+}
+
+.site-footer::after {
+	content: url("./assets/images/orchid.png");
+	position: absolute;
+	right: -4em;
+	bottom: 7.8em;
+    @include rotate;
+}
+
+.site-footer ul::after {
+	content: url("./assets/images/hibiscus_footer.png");
+	position: absolute;
+	left: calc(50% - 323px);
+	bottom: -28.5em;
+	z-index: -1;
+    @include rotate;
+}
+
+.banner1 {
+	min-height: 806px;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*video en arrière plan de la 1ere section*/
+#background-video {
+    height: 806px;
+    width: auto;
+    object-fit: cover;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /*z-index: -1;*/
+    }
+
+/*animations des titres*/
+@keyframes opacityeffect {
+	0% {
+	  opacity: 0;
+	  transform: translateY(50px);
+	}
+	100% {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+  }
+ 
+  @keyframes moovetitle {
+	0% {
+	  transform: translateY(80px);
+	}
+	100% {
+	  transform: translateY(0);
+	}
+  }
+  .story h2 {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	text-align: center;	
+  }
+
+.story h2 > span {
+	position: relative; /* positionner le titre par rapport au fond d'écran */
+	opacity: 0; /* rendre le titre transparent au chargement de la page */
+  }
+
+  .story h2 .firstpart {
+	animation: moovetitle 1s linear forwards, opacityeffect 1s linear forwards;
+	animation-delay: 1s;
+  }
+  
+  .story h2 .secondpart {
+	animation: moovetitle 1s linear forwards, opacityeffect 1s linear forwards;
+	animation-delay: 1.5s;
+  }
+  
+  .story h2 .secondpart > span {
+	display: inline-block;
+	margin-right: 5px;
+	animation: opacityeffect 1s ease-out forwards;
+    animation-delay: 1.5s;
+	
+  }
